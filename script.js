@@ -4,7 +4,7 @@ const prompt = require('cli-prompt'); //Allows javascript's prompt function to w
 const LineByLineReader = require('line-by-line'), // A library that allows me to itterate through each line in a text file
       lr = new LineByLineReader('UD.txt');
       lr.on('error', function (err) { 
-          console.log(err.toString()); //i If theres an error reading the lines, console a human readable error the the console
+          console.log(err.toString()); //i If theres an error reading the lines, log a human readable error the the console
       });
 
       lr.on('line', function (line) { 
