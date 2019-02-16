@@ -1,0 +1,16 @@
+{
+  "name": "login-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "John Dinh",
+  "license": "ISC",
+  "dependencies": {
+    "cli-prompt": "^0.6.0",
+    "line-by-line": "^0.1.6",
+    "read-text-file": "^1.1.0"
+  }
+}
