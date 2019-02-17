@@ -1,6 +1,7 @@
 let loginArray = []; // Creating Initial empty array
 
 const prompt = require('cli-prompt'); //Allows javascript's prompt function to work on terminals
+const fs = require('fs');
 const LineByLineReader = require('line-by-line'), // A library that allows me to itterate through each line in a text file
       lr = new LineByLineReader('UD.txt');
       lr.on('error', function (err) { 
@@ -41,7 +42,7 @@ const LineByLineReader = require('line-by-line'), // A library that allows me to
                   console.log('Wrong Input');
                   init();
               }
-          })
+          });
         }
 
         function login() {
@@ -52,12 +53,12 @@ const LineByLineReader = require('line-by-line'), // A library that allows me to
                         password(val)
                         tfSwitch = true;
                     }
-                })
+                });
                 if (!tfSwitch) {
                     console.log('User name was not found\n');
                     init();
                 }
-            })
+            });
         }
 
         function password(userName) {
@@ -73,7 +74,7 @@ const LineByLineReader = require('line-by-line'), // A library that allows me to
                     console.log('Wrong password, try again\n');
                     init();
                 }
-            })
+            });
         }
 
         function createUser() {
@@ -82,29 +83,40 @@ const LineByLineReader = require('line-by-line'), // A library that allows me to
                     let arr = val.toLowerCase().split(' ')
                     let userName = arr[0][0] + arr[1][0] + arr[1][1] + arr[2][0] + arr[2][1] + arr[2][2];
                     console.log(`Your username is ${userName}`);
-                    createPassword();
+                    createPassword(userName);
                 }
                 else {
                     console.log('Wrong format, try again\n');
                     createUser();
                 }
-            })
+            });
         }
 
-        function createPassword() {
+        function createPassword(userName) {
             prompt.password('Please create a password\n', val => {
                 let temp = val;
                 prompt.password('Please reenter your password\n', val => {
                     if (temp === val) {
                         console.log('Account created!\n')
-                        init();
+                        appendLine(userName, val);
                     } else {
                         console.log('Passwords did not match, try again\n');
                         createUser();
                     }
-                })
-            })
+                });
+            });
         }
+
+        function appendLine(userName, password) {
+            fs.appendFile('./UD.txt', `\n${userName},${password}`, err => {
+                if (err) throw err.toString();
+            });
+        }
+
+        // fs.appendFile('./UD.txt', '\ntesting123', err => {
+        //     if (err) throw err;
+        //     console.log('Saved!')
+        // });
 
 
     //   function runPrompts() {
