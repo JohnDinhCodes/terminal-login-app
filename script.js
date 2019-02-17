@@ -31,7 +31,7 @@ const LineByLineReader = require('line-by-line'), // A library that allows me to
       });
 
       function init() {
-          prompt('(L) to Login | (C) to create a new user', val => {
+          prompt('(L) to Login | (C) to create a new user\n', val => {
               let lowerVal = val.toLowerCase();
               if (lowerVal === 'l') {
                   login();
@@ -46,7 +46,7 @@ const LineByLineReader = require('line-by-line'), // A library that allows me to
 
         function login() {
             let tfSwitch = false;
-            prompt('Please enter your user name and hit enter', val => {
+            prompt('Please enter your user name and hit enter\n', val => {
                 loginArray.forEach(obj => {
                     if (obj.username === val) {
                         password(val)
@@ -54,7 +54,7 @@ const LineByLineReader = require('line-by-line'), // A library that allows me to
                     }
                 })
                 if (!tfSwitch) {
-                    console.log('User name was not found');
+                    console.log('User name was not found\n');
                     init();
                 }
             })
@@ -62,22 +62,22 @@ const LineByLineReader = require('line-by-line'), // A library that allows me to
 
         function password(userName) {
             tfSwitch = false;
-            prompt.password('Enter your password', val => {
+            prompt.password('Enter your password\n', val => {
                 loginArray.forEach(obj => {
                     if (obj.username === userName && obj.password === val) { 
                         tfSwitch = true;
-                        console.log('You are logged in!');
+                        console.log('You are logged in!\n');
                     }
                 });
                 if (!tfSwitch) {
-                    console.log('Wrong password, try again');
+                    console.log('Wrong password, try again\n');
                     init();
                 }
             })
         }
 
         function createUser() {
-            prompt('Please enter your first name, last name, and student ID, seperated by a space Example: Tom Waits 1234', val => {
+            prompt('Please enter your first name, last name, and student ID, seperated by a space Example: Tom Waits 1234\n', val => {
                 if (val.toLowerCase().split(' ') && val.toLowerCase().split(' ').length === 3) {
                     let arr = val.toLowerCase().split(' ')
                     let userName = arr[0][0] + arr[1][0] + arr[1][1] + arr[2][0] + arr[2][1] + arr[2][2];
@@ -85,21 +85,21 @@ const LineByLineReader = require('line-by-line'), // A library that allows me to
                     createPassword();
                 }
                 else {
-                    console.log('Wrong format, try again');
+                    console.log('Wrong format, try again\n');
                     createUser();
                 }
             })
         }
 
         function createPassword() {
-            prompt.password('Please create a password', val => {
+            prompt.password('Please create a password\n', val => {
                 let temp = val;
-                prompt.password('Please reenter your password', val => {
+                prompt.password('Please reenter your password\n', val => {
                     if (temp === val) {
-                        console.log('Account created!')
+                        console.log('Account created!\n')
                         init();
                     } else {
-                        console.log('Passwords did not match, try again');
+                        console.log('Passwords did not match, try again\n');
                         createUser();
                     }
                 })
