@@ -77,7 +77,7 @@ const LineByLineReader = require('line-by-line'), // A library that allows me to
         }
 
         function createUser() {
-            prompt('Please enter your first name, last name, and student ID, seperated by a space Example: Tom Waits 1234\n', val => {
+            prompt('Please enter your first name, last name, and student ID, seperated by a space\nExample: Tom Waits 1234\n', val => {
                 if (val.toLowerCase().split(' ') && val.toLowerCase().split(' ').length === 3) {
                     let arr = val.toLowerCase().split(' ')
                     let userName = arr[0][0] + arr[1][0] + arr[1][1] + arr[2][0] + arr[2][1] + arr[2][2];
